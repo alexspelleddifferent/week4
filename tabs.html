@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Favourite Foods</title>
+    <link rel="stylesheet" href="tabs_style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+    
+        <h1>Favourite Foods</h1>  
+        <div id="tabs">
+            <button data-content-id="pizza" class="tab-button">Pizza</button>
+            <button data-content-id="cheesecake" class="tab-button">Cheesecake</button>
+            <button data-content-id="sushi" class="tab-button">Sushi</button>
+        </div>
+
+        <div id="pizza" class="tab-content">Pizza is awesome</div>
+        <div id="cheesecake" class="tab-content">Cheescake is delicious</div>
+        <div id="sushi" class="tab-content">Sushi is amazing</div>
+
+    
+    <script>
+
+        let buttons = document.querySelectorAll('.tab-button')
+        let tabcontents = document.querySelectorAll('.tab-content')
+
+        tabcontents.forEach( function(divEl) {
+            divEl.style.display = 'none'
+        })
+
+        buttons.forEach(function(buttonEl) {
+            buttonEl.addEventListener('click', function() {
+
+                tabcontents.forEach (function(x) {
+                    x.style.display='none'
+                })
+
+                let contentid=this.getAttribute('data-content-id')
+
+                let tabcontent=document.querySelector('#' + contentid)
+                tabcontent.style.display = 'block'
+            })
+        })
+        tabcontents[0].style.display = 'block'
+    </script>
+    </body>
+</html>
