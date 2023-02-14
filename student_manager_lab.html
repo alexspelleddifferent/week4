@@ -59,8 +59,9 @@
     [Note on HTML element notation: span#student-count means the span element with id="student-count" ]
     When the page loads:
         * Using JavaScript, display 0 in the span#student-count  (1pt)*/
-        let count=document.querySelector('#student-count')
-        count.innerHTML=0
+        let student_count=document.querySelector('#student-count')
+        let count=0
+        student_count.innerHTML=count
 
         /* Add an event listener so that when button#add-students is clicked:
             - Read the value from the student-name input, save in a variable. If the name is not entered, show an alert error message and return. (1pt)
@@ -81,6 +82,7 @@
         let name_in=document.querySelector('#student-name')
         let id_in=document.querySelector('#student-id')
         let gpa_in=document.querySelector('#student-gpa')
+        let student_list=document.querySelector('#student-list')
         addbutton.addEventListener('click', function() {
             let name=name_in.value
             if (name=='') {
@@ -97,13 +99,41 @@
                 alert("You entered an invalid GPA!")
                 return
             }
+
+            let newstudent = document.createElement('li')
+
+            newstudent.innerHTML=name+', id: '+id+', GPA '+gpa
+
+            newstudent.addEventListener('click', function() {
+                newstudent.classList.toggle('selected')
+            })
+
+            student_list.appendChild(newstudent)
+
+            name_in.value=id_in.value=gpa_in.value=''
+
+            count=count+1
+            student_count.innerHTML=count
         })
+
+
+
+
 
         /* Add an event listener so that when button#remove-selected-students is clicked:
             - Remove all of the elements with the class="selected" from the list.   (3pt)
             - Using the remove() function on an element will remove it. Example https://jsfiddle.net/rk9pm4vg/
-        
-        You should not need to modify any of the HTML. 
+        */
+        let remove_students=document.querySelector('#remove-selected-students')
+        remove_students.addEventListener('click', function () {
+            let bad_students=document.querySelectorAll('.selected')
+            bad_students.forEach(function(element) {
+                element.remove()
+                count=count-1
+            })
+            student_count.innerHTML=count
+        })
+        /*You should not need to modify any of the HTML. 
     */
 
 </script>
