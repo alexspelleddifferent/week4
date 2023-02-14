@@ -102,7 +102,7 @@
 
             let newstudent = document.createElement('li')
 
-            newstudent.innerHTML=name+', id: '+id+', GPA '+gpa
+            newstudent.innerHTML=`${name}, id: ${id}, GPA ${gpa}`
 
             newstudent.addEventListener('click', function() {
                 newstudent.classList.toggle('selected')
